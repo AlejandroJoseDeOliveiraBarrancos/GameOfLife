@@ -1,0 +1,7 @@
+w: width
+h: height
+s: speed
+n: number of generations
+m: map configuration
+
+w=5 h=5 g=20 s=500 n=1 m=01030#201#0003##
