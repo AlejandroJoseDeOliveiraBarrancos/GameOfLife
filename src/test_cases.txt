@@ -5,3 +5,7 @@ n: number of generations
 m: map configuration
 
 w=5 h=5 g=20 s=500 n=1 m=01030#201#0003##
+
+Invalid:
+w=5 h=5 o=20 s=500 n=1 m=01030#201#0003##
+w=5 h=5 g=20 x=500 n=1 m=01030#201#0003##

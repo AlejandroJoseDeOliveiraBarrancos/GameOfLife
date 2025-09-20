@@ -1,6 +1,6 @@
 Game Of Life
 
-Es un juego donde hay varios tipos de celdas en un matriz y cada celda reaccion a las celdas circundantes
+Es un juego donde hay varios tipos de celdas en un matriz y cada celda reacciona a las celdas circundantes
 de una forma diferente segun las reglas del juego en cada generacion.
 
 Args:
