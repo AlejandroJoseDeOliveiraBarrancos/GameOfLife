@@ -1,7 +1,7 @@
-import java.security.InvalidParameterException;
+import Configurations.GeneralConfigurations;
+import Configurations.MatrixConfigurations;
 
 public class Validations {
-
     public static void ValidateNumberOfArgs(String[] args) {
         if (args.length < Constants.NUMBER_OF_EXPECTED_ARGUMENTS)
         {
@@ -12,12 +12,8 @@ public class Validations {
         }
     }
 
-    public static boolean ValidateValuesOfArgs(String[] strings)
+    public static boolean ValidateValuesAndSaveConfigurations(String[] strings)
     {
-        // [w=5, h=5, g=20, s=500, n=1, m=01030#201#0003##]
-        // "w=5"
-        //  012
-
         for (String arg: strings) {
             String[] parts = arg.split("=");
             char argChar = parts[0].charAt(0);
@@ -28,9 +24,13 @@ public class Validations {
                 return false;
             }
 
+            boolean isValid;
             switch (argChar) {
                 case 'w': {
-                    return ValidateWidth(value, argChar);
+                    int valueInt = Integer.parseInt(value);
+                    isValid = ValidateWidth(valueInt, argChar);
+                    if (isValid) GeneralConfigurations.matrixConfigurations.setWidth(valueInt);
+                    return isValid;
                 }
                 case 'h':
                     break;
@@ -40,11 +40,11 @@ public class Validations {
         return true;
     }
 
-    private static boolean ValidateWidth (String value, char argChar) {
+    private static boolean ValidateWidth (int value, char argChar) {
         try {
-            int valueInt = Integer.parseInt(value);
-            if (!Rules.IsValidWidth(valueInt)) {
+            if (!Rules.IsValidWidth(value)) {
                 Utils.PrintErrorMessage("Invalid argument value: " + argChar + "=" + value);
+                return false;
             }
         } catch (NumberFormatException e) {
             Utils.PrintErrorMessage("Invalid argument value: " + argChar + "=" + value);

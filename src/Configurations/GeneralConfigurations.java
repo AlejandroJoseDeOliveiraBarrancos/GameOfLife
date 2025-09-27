@@ -1,6 +1,8 @@
 package Configurations;
 
 public class GeneralConfigurations {
-    public static GameConfigurations gameConfigurations;
-    public static MatrixConfigurations matrixConfigurations;
+    public final static MatrixConfigurations matrixConfigurations = new MatrixConfigurations();
+    // public static gameConfigurations
+    // ...
+
 }

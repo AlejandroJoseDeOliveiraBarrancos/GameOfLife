@@ -3,11 +3,20 @@ package Configurations;
 public class MatrixConfigurations {
     private int Width;
     private int Height;
-    private String Pattern;
+    private String[] Pattern; // ["013","201","002"]
 
-    public MatrixConfigurations(int width, int height, String pattern) {
+    public MatrixConfigurations() {
+    }
+
+    public void setWidth(int width) {
         Width = width;
+    }
+
+    public void setHeight(int height) {
         Height = height;
+    }
+
+    public void setPattern(String[] pattern) {
         Pattern = pattern;
     }
 
@@ -19,7 +28,7 @@ public class MatrixConfigurations {
         return Height;
     }
 
-    public String getPattern() {
+    public String[] getPattern() {
         return Pattern;
     }
 }
