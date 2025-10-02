@@ -2,14 +2,18 @@ import Configurations.GeneralConfigurations;
 
 public class Matrix {
     public static void BuildMatrix() {
-        int width = 3;
-        int height = 3;
-//        int width = GeneralConfigurations.matrixConfigurations.getWidth();
-//        int height = GeneralConfigurations.matrixConfigurations.getHeight();
+        int width = GeneralConfigurations.matrixConfigurations.getWidth();
+        int height = GeneralConfigurations.matrixConfigurations.getHeight();
         
         int[][] matrix = new int[width][height];
 
-        String[] pattern = new String[]{"013","201","002"};
+        String[] pattern = new String[]{
+                "013","201","002","012","102",
+                "013","201","002","012","102",
+                "013","201","002","012","102",
+                "013","201","002","012","102",
+                "013","201","002","012","102",
+        };
 
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {

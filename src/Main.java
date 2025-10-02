@@ -9,7 +9,7 @@ public class Main {
 
         Utils.PrintReceivedArguments(args);
 
-        Validations.ValidateValuesAndSaveConfigurations(args);
+        Validations.validateValuesAndSaveConfigurations(args);
 
         Matrix.BuildMatrix();
         // construir matriz

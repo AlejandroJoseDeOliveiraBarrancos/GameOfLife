@@ -4,4 +4,5 @@ public class Constants {
 
     // Expected Values
     public static final int[] WIDTH_EXPECTED_VALUES = new int[]{5, 10, 15, 20, 40, 80};
+    public static final int[] HEIGHT_EXPECTED_VALUES = new int[]{5, 10, 15, 20, 40};
 }
