@@ -40,4 +40,7 @@ public class Utils {
         }
         return false;
     }
+    public static boolean DoesStringContains(String string, String stringTofind) {
+        return string.contains(stringTofind);
+    }
 }

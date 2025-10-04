@@ -1,6 +1,8 @@
 import Configurations.GeneralConfigurations;
 import Configurations.MatrixConfigurations;
 
+import java.util.List;
+
 public class Validations {
     public static void ValidateNumberOfArgs(String[] args) {
         if (args.length < Constants.NUMBER_OF_EXPECTED_ARGUMENTS)
@@ -14,6 +16,8 @@ public class Validations {
 
     public static boolean validateValuesAndSaveConfigurations(String[] strings)
     {
+        boolean isHeightSetUp = false;
+
         for (String arg: strings) {
             String[] parts = arg.split("=");
             char argChar = parts[0].charAt(0);
@@ -38,6 +42,7 @@ public class Validations {
                     if (!isValid) return false;
 
                     GeneralConfigurations.matrixConfigurations.setWidth(valueInt);
+                    break;
                 }
                 case 'h':
                     // We Validate is a valid number
@@ -51,7 +56,25 @@ public class Validations {
                     if (!isValid) return false;
 
                     GeneralConfigurations.matrixConfigurations.setHeight(valueInt);
+                    isHeightSetUp = true;
+                    break;
                 case 'm':
+                    // We first validate if is a random "rnd"
+                    boolean isRandom = Rules.IsRandomValue(value);
+                    if (isRandom) {
+                        GeneralConfigurations.matrixConfigurations.setRandom(true);
+                        break;
+                    }
+
+                    // Continue iterating until height is set up
+                    if (!isHeightSetUp) break;
+
+                    // "013#201#002"
+                    // has to have values from "0" to "3" and "#"
+                    isValid = validateMapValues(value);
+                    if (!isValid) return false;
+
+                    // number of hastags can not be hiher to number of rows
                     break;
                 case 's':
                     break;
@@ -92,6 +115,17 @@ public class Validations {
         if (!Rules.IsValidNumber(value)) {
             Utils.PrintErrorMessage("Invalid argument value: " + argChar + "=" + value);
             return false;
+        }
+        return true;
+    }
+
+    private static boolean validateMapValues(String values) {
+        char[] chars = values.toCharArray();
+
+        boolean isValid;
+        for (char value : chars) {
+            isValid = Rules.IsValidMapValue(value);
+            if (!isValid) return false;
         }
         return true;
     }

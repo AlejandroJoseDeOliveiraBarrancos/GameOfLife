@@ -4,6 +4,7 @@ public class MatrixConfigurations {
     private int Width;
     private int Height;
     private String[] Pattern; // ["013","201","002"]
+    private boolean IsRandom = false;
 
     public MatrixConfigurations() {
     }
@@ -31,4 +32,13 @@ public class MatrixConfigurations {
     public String[] getPattern() {
         return Pattern;
     }
+
+    public boolean isRandom() {
+        return IsRandom;
+    }
+
+    public void setRandom(boolean random) {
+        IsRandom = random;
+    }
+
 }

@@ -17,6 +17,10 @@ public class Rules {
         );
     }
 
+    public static boolean IsRandomValue(String arg) {
+        return Utils.DoesStringContains(arg, Constants.RANDOM_VALUE);
+    }
+
     public static boolean IsValidNumber(String number) {
         try {
             Integer.parseInt(number);
@@ -24,5 +28,11 @@ public class Rules {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    public static boolean IsValidMapValue(char value) {
+        return Utils.DoesCharListContains(
+                Constants.MAP_EXPECTED_VALUES, value
+        );
     }
 }
