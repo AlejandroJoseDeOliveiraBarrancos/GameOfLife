@@ -1,5 +1,3 @@
-import Configurations.GeneralConfigurations;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -16,6 +14,5 @@ public class Main {
         // empezar juego
         // imprimir despedida
     }
-
 
 }

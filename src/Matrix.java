@@ -7,17 +7,11 @@ public class Matrix {
         
         int[][] matrix = new int[width][height];
 
-        String[] pattern = new String[]{
-                "013","201","002","012","102",
-                "013","201","002","012","102",
-                "013","201","002","012","102",
-                "013","201","002","012","102",
-                "013","201","002","012","102",
-        };
+        String[] pattern = GeneralConfigurations.matrixConfigurations.getPattern();
 
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                matrix[i][j] =  pattern[i].charAt(j) - '0';
+                matrix[i][j] =  TryGetValueFromPattern(i, j, pattern);
             }
         }
 
@@ -29,6 +23,17 @@ public class Matrix {
                 if (y!=matrix[x].length-1) System.out.print(" ");
             }
             System.out.println("|");
+        }
+    }
+
+    private static int TryGetValueFromPattern(int i, int j, String[] pattern)
+    {
+        try {
+            return pattern[i].charAt(j) - '0';
+        }
+        catch (IndexOutOfBoundsException e)
+        {
+            return 0;
         }
     }
 }

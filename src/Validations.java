@@ -1,7 +1,4 @@
 import Configurations.GeneralConfigurations;
-import Configurations.MatrixConfigurations;
-
-import java.util.List;
 
 public class Validations {
     public static void ValidateNumberOfArgs(String[] args) {
@@ -16,72 +13,66 @@ public class Validations {
 
     public static boolean validateValuesAndSaveConfigurations(String[] strings)
     {
-        boolean isHeightSetUp = false;
+        boolean isValid;
 
-        for (String arg: strings) {
-            String[] parts = arg.split("=");
-            char argChar = parts[0].charAt(0);
-            String value = parts[1];
+        isValid = AreCharArgsKeysValid(strings);
+        if (!isValid) return false;
 
-            if(!Rules.IsArgValid(argChar)){
-                Utils.PrintErrorMessage("Invalid argument: " + argChar);
-                return false;
-            }
 
-            boolean isValid;
-            switch (argChar) {
-                case 'w': {
-                    // We Validate is a valid number
-                    isValid = validateNumber(value, argChar);
-                    if (!isValid) return false;
 
-                    // We Validate is a valid Height
-                    int valueInt = Integer.parseInt(value);
+        // Width Validations
+        String wValue = FindArgCharValue(strings, Constants.WIDTH_CHAR);
 
-                    isValid = validateWidth(valueInt, argChar);
-                    if (!isValid) return false;
+        // We Validate is a valid number
+        isValid = validateNumber(wValue, Constants.WIDTH_CHAR);
+        if (!isValid) return false;
 
-                    GeneralConfigurations.matrixConfigurations.setWidth(valueInt);
-                    break;
-                }
-                case 'h':
-                    // We Validate is a valid number
-                    isValid = validateNumber(value, argChar);
-                    if (!isValid) return false;
+        // We Validate is a valid Height
+        int wValueInt = Integer.parseInt(wValue);
 
-                    // We Validate is a valid Height
-                    int valueInt = Integer.parseInt(value);
+        isValid = validateWidth(wValueInt, Constants.WIDTH_CHAR);
+        if (!isValid) return false;
 
-                    isValid = validateHeight(valueInt, argChar);
-                    if (!isValid) return false;
+        GeneralConfigurations.matrixConfigurations.setWidth(wValueInt);
 
-                    GeneralConfigurations.matrixConfigurations.setHeight(valueInt);
-                    isHeightSetUp = true;
-                    break;
-                case 'm':
-                    // We first validate if is a random "rnd"
-                    boolean isRandom = Rules.IsRandomValue(value);
-                    if (isRandom) {
-                        GeneralConfigurations.matrixConfigurations.setRandom(true);
-                        break;
-                    }
 
-                    // Continue iterating until height is set up
-                    if (!isHeightSetUp) break;
 
-                    // "013#201#002"
-                    // has to have values from "0" to "3" and "#"
-                    isValid = validateMapValues(value);
-                    if (!isValid) return false;
+        // Height Validations
+        // We Validate is a valid number
+        String hValue = FindArgCharValue(strings, Constants.HEIGHT_CHAR);
+        isValid = validateNumber(hValue, Constants.HEIGHT_CHAR);
+        if (!isValid) return false;
 
-                    // number of hastags can not be hiher to number of rows
-                    break;
-                case 's':
-                    break;
-                // TODO implement remaining values to validate
+        // We Validate is a valid Height
+        int hValueInt = Integer.parseInt(hValue);
 
-            }
+        isValid = validateHeight(hValueInt, Constants.HEIGHT_CHAR);
+        if (!isValid) return false;
+
+        GeneralConfigurations.matrixConfigurations.setHeight(hValueInt);
+
+
+
+        // Map Validations
+        String mValue = FindArgCharValue(strings, Constants.MAP_CHAR);
+
+        // We first validate if is a random "rnd"
+        boolean isRandom = Rules.IsRandomValue(mValue);
+        if (!isRandom) {
+            isValid = validateMapValues(mValue);
+            if (!isValid) return false;
+
+            // "013#201#002"
+            GeneralConfigurations.matrixConfigurations.setPattern(mValue);
+        } else {
+            GeneralConfigurations.matrixConfigurations.setRandom(true);
         }
+
+
+
+
+
+        // other validations
         return true;
     }
 
@@ -130,5 +121,29 @@ public class Validations {
         return true;
     }
 
+    public static String FindArgCharValue(String[] stringsToLookInto, char argCharToFind)
+    {
+        for (String string : stringsToLookInto) {
 
+            String[] parts = string.split(Constants.ARGUMENTS_INDEX_SEPARATOR);
+            char argChar = parts[0].charAt(0);
+            String value = parts[1];
+
+            if (argChar == argCharToFind) return value;
+        }
+        throw new IllegalArgumentException("Expected arg not found: " + argCharToFind);
+    }
+
+    public static boolean AreCharArgsKeysValid(String[] strings){
+        for (String arg: strings) {
+            String[] parts = arg.split(Constants.ARGUMENTS_INDEX_SEPARATOR);
+            char argChar = parts[0].charAt(0);
+
+            if(!Rules.IsArgValid(argChar)){
+                Utils.PrintErrorMessage("Invalid argument: " + argChar);
+                return false;
+            }
+        }
+        return true;
+    }
 }

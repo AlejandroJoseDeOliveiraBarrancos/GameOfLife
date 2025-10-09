@@ -17,8 +17,9 @@ public class MatrixConfigurations {
         Height = height;
     }
 
-    public void setPattern(String[] pattern) {
-        Pattern = pattern;
+    public void setPattern(String pattern) {
+        // "013#201#002" ->
+        Pattern = pattern.split("#");
     }
 
     public int getWidth() {
