@@ -1,4 +1,9 @@
-import Configurations.GeneralConfigurations;
+package Logic;
+
+import Shared.Configurations.GeneralConfigurations;
+import Domain.Constants;
+import Domain.Rules;
+import Shared.Utils;
 
 public class Validations {
     public static void ValidateNumberOfArgs(String[] args) {
@@ -20,6 +25,7 @@ public class Validations {
 
 
 
+
         // Width Validations
         String wValue = FindArgCharValue(strings, Constants.WIDTH_CHAR);
 
@@ -37,6 +43,7 @@ public class Validations {
 
 
 
+
         // Height Validations
         // We Validate is a valid number
         String hValue = FindArgCharValue(strings, Constants.HEIGHT_CHAR);
@@ -50,6 +57,7 @@ public class Validations {
         if (!isValid) return false;
 
         GeneralConfigurations.matrixConfigurations.setHeight(hValueInt);
+
 
 
 
@@ -70,9 +78,93 @@ public class Validations {
 
 
 
+        // Speed Validations
+        // We Validate is a valid number
+        String sValue = FindArgCharValue(strings, Constants.SPEED_CHAR);
+        isValid = validateNumber(sValue, Constants.SPEED_CHAR);
+        if (!isValid) return false;
 
+        // We Validate is a valid Height
+        int sValueInt = Integer.parseInt(sValue);
+
+        isValid = validateSpeed(sValueInt, Constants.SPEED_CHAR);
+        if (!isValid) return false;
+
+        GeneralConfigurations.gameConfigurations.setSpeed(sValueInt);
+
+
+
+        // Number of Generations Validations
+        // We Validate is a valid number
+        String genValue = FindArgCharValue(strings, Constants.GENERATIONS_CHAR);
+        isValid = validateNumber(genValue, Constants.GENERATIONS_CHAR);
+        if (!isValid) return false;
+
+        // We Validate is a valid Height
+        int genValueInt = Integer.parseInt(genValue);
+
+        isValid = validateNumberOfGenerations(genValueInt, Constants.GENERATIONS_CHAR);
+        if (!isValid) return false;
+
+        GeneralConfigurations.gameConfigurations.setNumberOfGenerations(genValueInt);
+
+
+
+        // Movememnt behaviour Validations
+        // We Validate is a valid number
+        String behValue = FindArgCharValue(strings, Constants.MOVEMENT_CHAR);
+        isValid = validateNumber(behValue, Constants.MOVEMENT_CHAR);
+        if (!isValid) return false;
+
+        // We Validate is a valid Height
+        int behValueInt = Integer.parseInt(behValue);
+
+        isValid = validateMovementBehaviour(behValueInt, Constants.MOVEMENT_CHAR);
+        if (!isValid) return false;
+
+        GeneralConfigurations.gameConfigurations.setMovementBehaviour(behValueInt);
 
         // other validations
+        return true;
+    }
+
+    private static boolean validateSpeed (int value, char argChar) {
+        try {
+            if (!Rules.IsValidSpeed(value)) {
+                Utils.PrintErrorMessage("Invalid argument value: " + argChar + "=" + value);
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            Utils.PrintErrorMessage("Invalid argument value: " + argChar + "=" + value);
+            return false;
+        }
+        return true;
+    }
+
+    private static boolean validateNumberOfGenerations (int value, char argChar) {
+        try {
+            if (!Rules.IsValidNumberOfGenerations(value)) {
+                Utils.PrintErrorMessage("Invalid argument value: " + argChar + "=" + value);
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            Utils.PrintErrorMessage("Invalid argument value: " + argChar + "=" + value);
+            return false;
+        }
+        return true;
+    }
+
+
+    private static boolean validateMovementBehaviour (int value, char argChar) {
+        try {
+            if (!Rules.IsValidMovementBehaviour(value)) {
+                Utils.PrintErrorMessage("Invalid argument value: " + argChar + "=" + value);
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            Utils.PrintErrorMessage("Invalid argument value: " + argChar + "=" + value);
+            return false;
+        }
         return true;
     }
 

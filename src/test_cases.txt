@@ -1,11 +1,14 @@
 w: width
 h: height
 s: speed
-n: number of generations
+n: movement (1 right, 2 down, 3 left, 4 up)
+g: number of generations
 m: map configuration (can be a pettern like 013#201#002 or "rnd" for random placement)
 
 w=5 h=5 g=20 s=500 n=1 m=013#201#002
 w=5 h=5 g=20 s=500 n=1 m=#######
+w=5 h=5 m=00100#00300#03230#00300#00000 g=8 n=1 s=500
+w=10 h=10 m=0000000000#0000000000#0000000000#1111111111#0000000000#2020000000#0000000000#3333333333#0000000000#0000000000 g=18 n=1 s=250
 
 Invalid:
 w=5 h=5 o=20 s=500 n=1 m=01030#201#0003##

@@ -1,4 +1,8 @@
-import Configurations.GeneralConfigurations;
+package Domain;
+
+import Shared.Configurations.GeneralConfigurations;
+
+import static Shared.Utils.PrintMatrix;
 
 public class Matrix {
     public static void BuildMatrix() {
@@ -15,15 +19,9 @@ public class Matrix {
             }
         }
 
-        // print matrix
-        for (int x=0; x < matrix.length; x++) {
-            System.out.print("|");
-            for (int y=0; y< matrix[x].length; y++) {
-                System.out.print (matrix[x][y]);
-                if (y!=matrix[x].length-1) System.out.print(" ");
-            }
-            System.out.println("|");
-        }
+        PrintMatrix(matrix);
+
+        GeneralConfigurations.matrixConfigurations.setMatrix(matrix);
     }
 
     private static int TryGetValueFromPattern(int i, int j, String[] pattern)

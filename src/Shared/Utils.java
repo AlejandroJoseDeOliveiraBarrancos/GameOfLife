@@ -1,3 +1,5 @@
+package Shared;
+
 public class Utils {
     public static void GreetUser(){
         System.out.println(
@@ -42,5 +44,19 @@ public class Utils {
     }
     public static boolean DoesStringContains(String string, String stringTofind) {
         return string.contains(stringTofind);
+    }
+
+    public static void PrintMatrix(int[][] matrix) {
+        // print matrix
+        System.out.println();
+        for (int x=0; x < matrix.length; x++) {
+            System.out.print("|");
+            for (int y=0; y< matrix[x].length; y++) {
+                System.out.print (matrix[x][y]);
+                if (y!=matrix[x].length-1) System.out.print(" ");
+            }
+            System.out.println("|");
+        }
+        System.out.println();
     }
 }

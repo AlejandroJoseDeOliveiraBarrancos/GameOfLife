@@ -1,3 +1,5 @@
+package Domain;
+
 public class Constants {
     public static final int NUMBER_OF_EXPECTED_ARGUMENTS = 6;
     public static final char HEIGHT_CHAR = 'h';
@@ -22,6 +24,14 @@ public class Constants {
     // Expected Values
     public static final int[] WIDTH_EXPECTED_VALUES = new int[]{5, 10, 15, 20, 40, 80};
     public static final int[] HEIGHT_EXPECTED_VALUES = new int[]{5, 10, 15, 20, 40};
+    public static final int[] MOVEMENT_BEHAVIOUR_EXPECTED_VALUES = new int[]{1, 2, 3, 4};
     public static final String RANDOM_VALUE = "rnd";
     public static final char[] MAP_EXPECTED_VALUES = new char[]{'0', '1', '2', '3', '#'};
+    public static final int MIN_NUMBER_OF_GENERATIONS = 0;
+    public static final int MAX_NUMBER_OF_GENERATIONS = 1000;
+    public static final int[] SPEED_EXPECTED_VALUES = new int[]{0, 250, 500, 1000, 5000};
+
+    // Default Configurations
+    public static final int DEFAULT_MOVEMENT_BEHAVIOUR = 1;
+
 }

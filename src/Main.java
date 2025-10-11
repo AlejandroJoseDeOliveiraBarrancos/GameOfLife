@@ -1,3 +1,8 @@
+import Domain.Matrix;
+import Logic.Validations;
+import Presentation.Game;
+import Shared.Utils;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -10,8 +15,9 @@ public class Main {
         Validations.validateValuesAndSaveConfigurations(args);
 
         Matrix.BuildMatrix();
-        // construir matriz
-        // empezar juego
+
+        Game.Play();
+
         // imprimir despedida
     }
 

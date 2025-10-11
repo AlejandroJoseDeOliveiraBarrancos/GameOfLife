@@ -1,12 +1,21 @@
-package Configurations;
+package Shared.Configurations;
 
 public class MatrixConfigurations {
     private int Width;
     private int Height;
     private String[] Pattern; // ["013","201","002"]
     private boolean IsRandom = false;
+    private int[][] Matrix;
 
     public MatrixConfigurations() {
+    }
+
+    public int[][] getMatrix() {
+        return Matrix;
+    }
+
+    public void setMatrix(int[][] matrix) {
+        Matrix = matrix;
     }
 
     public void setWidth(int width) {
