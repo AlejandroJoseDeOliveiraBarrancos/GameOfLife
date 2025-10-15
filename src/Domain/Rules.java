@@ -26,7 +26,6 @@ public class Rules {
                         generations <= Constants.MAX_NUMBER_OF_GENERATIONS;
     }
 
-
     public static boolean IsValidMovementBehaviour(int behaviour) {
         return DoesIntListContains(
                 Constants.MOVEMENT_BEHAVIOUR_EXPECTED_VALUES, behaviour
@@ -57,4 +56,50 @@ public class Rules {
                 Constants.MAP_EXPECTED_VALUES, value
         );
     }
+
+
+
+
+    // GAME RULES
+    public static boolean CanMove(int value, int valueInCell) {
+        return value == Constants.ANIMAL_VALUE && valueInCell == Constants.EMPTY_VALUE;
+    }
+
+    public static boolean CanReplaceCell(int value, int valueInCell) {
+        return value == Constants.ANIMAL_VALUE && valueInCell == Constants.TREE_VALUE;
+    }
+
+    // APPEARANCE RULES
+    public static boolean CanTreeAppear(int value, int numberOfTreesInAOneCellRadius) {
+        return value == Constants.EMPTY_VALUE && numberOfTreesInAOneCellRadius >= 2;
+    }
+
+    public static boolean CanAnimalAppear(
+            int value,
+            int numberOfAnimalsInOneCellRadius,
+            int numberOfWatersInTwoCellRadius,
+            int numberOfTreesInTwoCellRadius
+    ) {
+        return value == Constants.EMPTY_VALUE
+                && numberOfAnimalsInOneCellRadius == 2
+                && numberOfWatersInTwoCellRadius >= 1
+                && numberOfTreesInTwoCellRadius >= 1;
+    }
+
+    public static boolean CanWaterAppear(
+            int value,
+            int numberOfWatersInUpperCellsInOneCellRadius,
+            int numberOfGeneration
+    ) {
+        return value == Constants.EMPTY_VALUE
+                && numberOfWatersInUpperCellsInOneCellRadius >= 1
+                && (numberOfGeneration % 3 == 0);
+    }
+
+
+
+
+
+
+
 }

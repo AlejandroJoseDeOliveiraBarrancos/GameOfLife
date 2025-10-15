@@ -20,8 +20,8 @@ public class Game {
             PrintMatrix(matrix);
 
             // apply generation rules using movement behaviour
-//            if (isEvenGeneration(numberOfGenerations))
-//                ApplyGeneration(matrix);
+            if (isEvenGeneration(numberOfGenerations))
+                ApplyGeneration(matrix);
 
             // After a generation
             numberOfGenerations =- 1;
@@ -30,6 +30,13 @@ public class Game {
         }
 
     }
+
+    private static void ApplyGeneration(int[][] matrix) {
+        // apply rules when needed
+
+    }
+
+
 
     private static boolean isEvenGeneration(int numberOfGeneration)
     {

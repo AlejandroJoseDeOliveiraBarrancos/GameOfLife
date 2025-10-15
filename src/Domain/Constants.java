@@ -20,6 +20,12 @@ public class Constants {
     public static final String ARGUMENTS_INDEX_SEPARATOR =  "=";
     public static final String MAP_INDEX_SEPARATOR =  "#";
 
+    // Game Values
+    public static final int EMPTY_VALUE = 0;
+    public static final int TREE_VALUE = 1;
+    public static final int ANIMAL_VALUE = 2;
+    public static final int WATER_VALUE = 3;
+
 
     // Expected Values
     public static final int[] WIDTH_EXPECTED_VALUES = new int[]{5, 10, 15, 20, 40, 80};
@@ -33,5 +39,7 @@ public class Constants {
 
     // Default Configurations
     public static final int DEFAULT_MOVEMENT_BEHAVIOUR = 1;
+
+
 
 }
